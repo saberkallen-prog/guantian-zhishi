@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5ef">
+  <meta name="description" content="转动二十四节气，走进一方江南稻田。在四时生长中，理解古人的观象授时。">
+  <title>观天知时 · 节气农田</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="field.css">
+  <link rel="stylesheet" href="learning.css">
+  <script src="model.js" defer></script>
+  <script src="weather.js" defer></script>
+  <script src="field.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4c-8-1-15 2-15 9a6 6 0 0 0 6 6c7 0 10-7 9-15Z"/><path d="M4 21 16 9M8 17v-5m0 5h5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C8 3 5 3 2 4v15c3-1 6-1 10 1 4-2 7-2 10-1V4c-3-1-6-1-10 1Zm0 0v15"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M16 5v14"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 6-7 11-7 11S5 16 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="m12 4-6 5H3v6h3l6 5Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 5m0 2v1"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#experience">跳至农田体验</a>
+  <aside class="rail" aria-label="快捷导航">
+    <a class="seal" href="#" aria-label="观天知时首页"><span>观天</span><span>知时</span></a>
+    <div class="rail-line"></div>
+    <a class="rail-link active" href="#experience" aria-label="节气农田"><svg><use href="#i-leaf"/></svg><span>农田</span></a>
+    <button class="rail-link" data-open="journal" aria-label="打开田间手记"><svg><use href="#i-book"/></svg><span>手记</span></button>
+    <span class="rail-caption">循天时 · 见生长</span>
+    <button class="rail-help icon-button" data-open="help" aria-label="体验说明"><svg><use href="#i-help"/></svg></button>
+  </aside>
+  <div class="page">
+    <header class="header">
+      <a class="brand" href="#"><strong>观天知时</strong><span>THE RHYTHM OF NATURE</span></a>
+      <nav aria-label="页面导航"><a class="nav-active" href="#experience">节气农田</a><a href="terms.html">节气图鉴</a><a href="sun.html">节气看太阳</a></nav>
+      <button class="journal-button" data-open="journal" aria-label="我的田间手记"><svg><use href="#i-book"/></svg><span>我的田间手记</span><span id="record-count" class="count">0</span></button>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow"><span></span> 二十四节气 · 江南稻作</p><h1 id="page-title">把一年，种进一方田<span>。</span></h1></div>
+        <div class="intro-aside"><p>循着节气的脚步，看一粒稻种走过四季。<br>在天时与农事之间，读懂古人的生活智慧。</p><span class="location"><svg><use href="#i-pin"/></svg> 江南 · 单季稻作示意</span></div>
+      </section>
+      <section id="experience" class="experience" aria-label="节气农田互动体验">
+        <div class="scene" data-scene="summer">
+          <div class="landscape" id="landscape" role="img" aria-label="随节气连续生长的江南稻田"><canvas id="field-canvas" aria-hidden="true"></canvas></div>
+          <div class="scene-shade"></div>
+          <div class="scene-grain"></div>
+          <div class="scene-top"><span class="chapter">同一方田 · 一年生长</span><div class="scene-tools"><span class="live-dot"></span><span>实时生长 · 拖动下方时间轴</span><button id="narration" class="icon-button" aria-label="播放节气讲解" aria-pressed="false"><svg><use href="#i-volume"/></svg></button><button class="icon-button" data-open="help" aria-label="查看操作说明"><svg><use href="#i-help"/></svg></button></div></div>
+          <div class="weather-switch" role="group" aria-label="田间天气示意"><span>田间天气</span><button data-weather-mode="auto" aria-pressed="true">随节气</button><button data-weather-mode="clear" aria-pressed="false">晴</button><button data-weather-mode="rain" aria-pressed="false">雨</button><button data-weather-mode="snow" aria-pressed="false">雪</button><small>艺术化演示</small></div>
+          <div class="term-copy" aria-live="polite">
+            <div class="term-kicker"><span id="term-season">夏 · SUMMER</span><span id="term-number">09 / 24</span></div>
+            <h2 id="term-name">芒种</h2><p class="term-english" id="term-english">GRAIN IN EAR</p>
+            <div class="term-facts"><span id="term-date">06.05–07</span><i></i><span>太阳黄经 <b id="term-longitude">75°</b></span></div>
+            <div class="term-divider"></div>
+            <p class="term-description" id="term-description"></p>
+            <a class="text-link astronomy-link" id="term-sun-link" href="sun.html?term=8">节气为什么看太阳？<svg><use href="#i-arrow"/></svg></a>
+            <div class="field-action"><span class="stage-label"><svg><use href="#i-leaf"/></svg><span id="stage-label">移栽返青</span></span><button id="farm-action" class="primary-button"><span id="action-label">体验插秧</span><svg><use href="#i-arrow"/></svg></button><p>动手体验一次，留下一页田间手记</p></div>
+          </div>
+          <div class="hotspots" id="hotspots"><button class="hotspot house" data-detail="house" aria-label="了解田边农舍"><span class="hotspot-dot" aria-hidden="true">+</span><span class="hotspot-label">田边农舍</span></button><button class="hotspot rice" data-detail="rice" aria-label="观察当前作物阶段"><span class="hotspot-dot" aria-hidden="true">+</span><span class="hotspot-label" id="rice-label">看看秧苗</span></button><button class="hotspot water" data-detail="water" aria-label="了解田间水渠"><span class="hotspot-dot" aria-hidden="true">+</span><span class="hotspot-label">一渠活水</span></button></div>
+          <div id="action-effect" class="action-effect" aria-hidden="true"></div>
+          <div class="scene-note"><span class="note-line"></span><div><span class="note-eyebrow">此刻 · 田间</span><p id="scene-note">秧苗入田，静候一季稻香。</p></div><svg><use href="#i-leaf"/></svg></div>
+          <span class="illustration-label">实时绘制稻株 · 教学生长示意</span>
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-heading"><div class="timeline-title"><svg><use href="#i-sun"/></svg><strong>拖动节气，让庄稼慢慢长大</strong><span>向右生长，向左回看</span></div><button id="autoplay" class="play-button" aria-pressed="false"><svg id="play-icon"><use href="#i-play"/></svg><span id="play-label">播放生长</span></button></div>
+          <div class="scrubber"><div class="scrub-caption"><span>立春 · 一年的开始</span><output id="scrub-readout" for="season-progress">芒种</output><span>大寒 · 静候新春</span></div><input id="season-progress" type="range" min="0" max="23" step="0.01" value="8" aria-label="拖动节气进度，观察庄稼生长" aria-valuetext="芒种"><div class="scrub-hint"><span>按住圆点左右拖动</span><span>田里每一步，都看得见</span></div></div>
+          <div class="timeline-scroll" id="timeline-scroll"><div id="timeline" class="timeline" role="group" aria-label="选择二十四节气"></div></div>
+          <div class="timeline-bottom"><div class="seasons" aria-label="快速选择季节"><button data-season="0"><span class="season-dot spring-dot"></span>春生</button><button data-season="8" class="selected"><span class="season-dot summer-dot"></span>夏长</button><button data-season="16"><span class="season-dot autumn-dot"></span>秋收</button><button data-season="21"><span class="season-dot winter-dot"></span>冬藏</button></div><div class="step-controls"><button id="previous" class="icon-button" aria-label="上一个节气"><svg class="reverse"><use href="#i-arrow"/></svg></button><span id="step-indicator">09 / 24</span><button id="next" class="icon-button" aria-label="下一个节气"><svg><use href="#i-arrow"/></svg></button></div></div>
+        </div>
+      </section>
+      <section class="nature-closeups" aria-labelledby="nature-title"><div class="section-heading"><div><p class="eyebrow">NATURE, UP CLOSE</p><h2 id="nature-title">把镜头，靠近自然。</h2></div><p>看雨珠停在叶尖，听雪意落入田间。<br>点击画面，走进一场微小的四时变化。</p></div><div class="macro-grid"><button class="macro-card" data-weather-detail="rain"><span class="macro-image"><canvas id="rain-preview" aria-hidden="true"></canvas><span class="macro-stamp">雨 · 微观田野</span><span class="macro-expand">查看动态特写 ↗</span></span><span class="macro-caption"><strong>雨落新秧</strong><span>一滴春雨，润一片新绿。</span><b>01</b></span></button><button class="macro-card" data-weather-detail="snow"><span class="macro-image"><canvas id="snow-preview" aria-hidden="true"></canvas><span class="macro-stamp">雪 · 微观田野</span><span class="macro-expand">查看动态特写 ↗</span></span><span class="macro-caption"><strong>雪落稻茬</strong><span>一片冬雪，覆一季等待。</span><b>02</b></span></button></div><p class="section-footnote">雨雪为自然现象的艺术化演示，不表示某个节气或某个地区必然出现相应天气。</p></section>
+      <section class="term-story"><div><p class="eyebrow">READ THE SOLAR TERM</p><h2><span id="story-term">芒种</span>，名字里藏着什么？</h2></div><div><p id="story-meaning"></p><a class="text-link" id="term-read-link" href="terms.html?term=8">认识这个节气 <svg><use href="#i-arrow"/></svg></a></div></section>
+      <section id="growth" class="growth-section" aria-labelledby="growth-title"><div class="section-heading"><div><p class="eyebrow">A GRAIN’S JOURNEY</p><h2 id="growth-title">从一粒种子，到一季稻香</h2></div><p>节气标记时序，生长自有节律。<br>沿着稻作的一生，去看每一份等待。</p></div><div class="growth-track" id="growth-track"></div></section>
+      <section class="wisdom"><div class="wisdom-symbol"><svg><use href="#i-sun"/></svg></div><div><p class="eyebrow">观象授时 · 顺时而作</p><h2>天上的刻度，地上的生活。</h2><p>古人观察日月星辰，逐步认识时间与季节。二十四节气以太阳周年视运动为依据，<br class="desktop-break">而一方田里的播种与收获，还要顺应当地的气候、水土与作物。</p><button class="text-link" data-open="astronomy">了解节气的天文依据 <svg><use href="#i-arrow"/></svg></button></div><div class="wisdom-mark" aria-hidden="true">时<br>序</div></section>
+    </main>
+    <footer><span>观天知时 <i>／</i> 中国古代天文学与二十四节气数字互动展示</span><button data-open="sources">内容依据与示意说明 <svg><use href="#i-arrow"/></svg></button><span class="footer-edition">课程作品 · 农田体验原型 01</span></footer>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><span class="eyebrow" id="dialog-kicker">田间观察</span><button class="icon-button" id="close-dialog" aria-label="关闭弹窗"><svg><use href="#i-close"/></svg></button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

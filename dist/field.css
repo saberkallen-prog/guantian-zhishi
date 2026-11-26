@@ -1,0 +1,21 @@
+/* Continuous field layer and its time scrubber. */
+.landscape{background:none!important;transform:none!important;animation:none!important}
+#field-canvas{display:block;width:100%;height:100%}
+.scrubber{margin-top:22px;padding:0 3px}
+.scrub-caption,.scrub-hint{display:flex;justify-content:space-between;align-items:center;color:#98a18a;font-size:9px;letter-spacing:.5px;gap:10px}
+.scrub-caption output{font-family:var(--serif);font-size:15px;letter-spacing:2px;color:#4b6b46;background:#edf1e4;border:1px solid #dde5cd;border-radius:5px;padding:5px 13px;min-width:80px;text-align:center}
+#season-progress{--progress:34.78%;appearance:none;-webkit-appearance:none;display:block;width:100%;height:36px;margin:10px 0 0;cursor:ew-resize;background:transparent;touch-action:pan-y}
+#season-progress::-webkit-slider-runnable-track{height:5px;border-radius:5px;background:linear-gradient(90deg,#658551 0%,#87a46b var(--progress),#e0e5d6 var(--progress),#e0e5d6 100%)}
+#season-progress::-moz-range-track{height:5px;border-radius:5px;background:#e0e5d6}
+#season-progress::-moz-range-progress{height:5px;border-radius:5px;background:#87a46b}
+#season-progress::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:25px;height:25px;margin-top:-10px;border:6px solid #fbfbf3;border-radius:50%;background:#527443;box-shadow:0 0 0 1px #bdcda8,0 3px 9px #4969382a;transition:box-shadow .2s}
+#season-progress::-moz-range-thumb{width:13px;height:13px;border:6px solid #fbfbf3;border-radius:50%;background:#527443;box-shadow:0 0 0 1px #bdcda8,0 3px 9px #4969382a}
+#season-progress:hover::-webkit-slider-thumb,#season-progress:active::-webkit-slider-thumb{box-shadow:0 0 0 1px #96b07b,0 0 0 7px #8ea77120,0 3px 9px #4969382a}
+#season-progress:focus-visible{outline:1px dashed #79985d;outline-offset:3px;border-radius:20px}
+.scrub-hint{font-size:8px;color:#9ba58e;margin-top:-1px}
+.timeline-scroll{margin-top:10px}
+.house{left:85%;top:27%}
+.rice{left:65%;top:64%}
+.water{left:82%;top:78%}
+@media(max-width:850px){.house{left:85%}.rice{left:71%}.water{left:80%}.scrub-caption{font-size:8px}.scrub-caption output{font-size:14px}}
+@media(max-width:600px){.scrubber{margin-top:18px;padding:0 1px}.scrub-caption{font-size:7px;gap:6px;letter-spacing:0}.scrub-caption output{font-size:13px;letter-spacing:1px;padding:5px 9px;min-width:64px}.scrub-hint{font-size:7px;letter-spacing:0}.timeline-title>strong{font-size:9px;letter-spacing:0}.timeline-title>svg{display:none}.play-button{font-size:8px;gap:3px}.timeline-heading{gap:5px}.house{left:83%;top:50%}.rice{left:53%;top:77%}.water{left:82%;top:87%}}
